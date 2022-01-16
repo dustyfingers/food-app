@@ -9,17 +9,24 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         marginBottom: 15,
         flexDirection: 'row',
-        alignItems: 'center'
+        // doing this makes the input collapse (not full height of parent)
+        // alignItems: 'center'
+    },
+    iconStyle: {
+        fontSize: 35,
+        // this doesnt make the input collapse
+        alignSelf: 'center',
+        marginHorizontal: 10
     },
     inputStyles: {
-        marginLeft: 5
+        fontSize: 18
     }
 });
 
 const SearchBar = () => {
     return (
         <View style={styles.searchContainer}>
-            <Feather name={'search'} size={30} />
+            <Feather name={'search'} style={styles.iconStyle} />
             <TextInput placeholder={'Search'} style={styles.inputStyles} />
         </View>
     );
