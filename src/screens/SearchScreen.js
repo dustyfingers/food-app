@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
 import SearchBar from '../components/SearchBar';
@@ -9,11 +9,19 @@ const styles = StyleSheet.create({
 });
 
 const SearchScreen = () => {
+
+    const [searchTerm, setSearchTerm] = useState('');
+    
     return (
+
         <View style={sharedStyles.pageContainer}>
-            <SearchBar />
+
+            <SearchBar searchTerm={searchTerm} onSearchTermChange={newTerm => setSearchTerm(newTerm)} />
+
         </View>
+
     );
+
 };
 
 export default SearchScreen;

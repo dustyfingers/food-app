@@ -23,13 +23,26 @@ const styles = StyleSheet.create({
     }
 });
 
-const SearchBar = () => {
+const SearchBar = ({ searchTerm, onSearchTermChange}) => {
+
     return (
+
         <View style={styles.searchContainer}>
+
             <Feather name={'search'} style={styles.iconStyle} />
-            <TextInput placeholder={'Search'} style={styles.inputStyles} />
+
+            <TextInput 
+                placeholder={'Search'} 
+                style={styles.inputStyles} 
+                value={searchTerm} 
+                onChangeText={newSearchTerm => onSearchTermChange(newSearchTerm)}
+                autoCapitalize='none'
+                autoCorrect={false} />
+
         </View>
+
     );
+
 };
 
 export default SearchBar;
