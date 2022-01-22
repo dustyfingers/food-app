@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     }
 });
 
-const SearchBar = ({ searchTerm, onSearchTermChange}) => {
+const SearchBar = ({ searchTerm, onSearchTermChange, onSearchTermSubmit }) => {
 
     return (
 
@@ -35,9 +35,10 @@ const SearchBar = ({ searchTerm, onSearchTermChange}) => {
                 placeholder={'Search'} 
                 style={styles.inputStyles} 
                 value={searchTerm} 
-                onChangeText={newSearchTerm => onSearchTermChange(newSearchTerm)}
+                onChangeText={onSearchTermChange}
                 autoCapitalize='none'
-                autoCorrect={false} />
+                autoCorrect={false}
+                onEndEditing={onSearchTermSubmit} />
 
         </View>
 
