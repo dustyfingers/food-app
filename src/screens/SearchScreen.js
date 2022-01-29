@@ -1,23 +1,21 @@
 import React, { useEffect, useState } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 
-// look up react-native-geolocation-service 
-
 import SearchBar from '../components/SearchBar'
+import ResultsList from '../components/ResultsList'
 import { sharedStyles } from '../styles/shared/shared'
 import useResults from '../hooks/useResults'
 
-const styles = StyleSheet.create({
-
-})
+const styles = StyleSheet.create({})
 
 const SearchScreen = () => {
 
     const [searchTerm, setSearchTerm] = useState('')
     const [handleSearch, results, errorMessage] = useResults()
 
-    // call search api when component is first rendered
-    useEffect(() => {handleSearch('burgers', 'nyc', 50)}, [])
+    // TODO: call search api when component is first rendered with user current location
+    // look up react-native-geolocation-service 
+    // useEffect(() => {handleSearch('burgers', 'nyc', 50)}, [])
     
     return (
 
@@ -29,8 +27,11 @@ const SearchScreen = () => {
                 onSearchTermSubmit={() => handleSearch(searchTerm, 'nyc', 200)} />
 
                 <Text>{errorMessage}</Text>
-
                 <Text>We have found {results.length} results{results.length ? ":" : null}</Text>
+
+                <ResultsList title={'Cost Effective'} />
+                <ResultsList title={'Bit Pricier'} />
+                <ResultsList title={'Big Spender'} />
 
         </View>
 
