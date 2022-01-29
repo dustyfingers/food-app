@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 import yelp from '../api/yelp'
 
@@ -16,8 +16,18 @@ export default () => {
     
         try
         {
+
+            // search params look as expected...
+            // console.log(searchParams)
     
+            // this works!
+            // const googleRes = await yelp.get('https://www.google.com')
+            // console.log(googleRes)
+            
+            // ! this request fails now with a response code of 400...
             const res = await yelp.get('/search', { params: searchParams })
+
+            console.log(res)
     
             setResults(res.data.businesses)
     

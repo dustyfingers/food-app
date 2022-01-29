@@ -10,13 +10,20 @@ const styles = StyleSheet.create({
     }
 })
 
-const ResultsList = ({ title }) => {
+const ResultsList = ({ title, results }) => {
 
     return (
+
         <View>
+
             <Text style={styles.title}>{title}</Text>
+
+            <Text>{results.length}</Text>
+
         </View>
+
     )
+
 }
 
 export default ResultsList
