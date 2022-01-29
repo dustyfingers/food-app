@@ -1,48 +1,23 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React, { useEffect, useState } from 'react'
+import { View, Text, StyleSheet } from 'react-native'
 
-// look up react-native-geolocaiton-service 
+// look up react-native-geolocation-service 
 
-import SearchBar from '../components/SearchBar';
-import { sharedStyles } from '../styles/shared/shared';
-import yelp from '../api/yelp';
+import SearchBar from '../components/SearchBar'
+import { sharedStyles } from '../styles/shared/shared'
+import useResults from '../hooks/useResults'
 
 const styles = StyleSheet.create({
 
-});
+})
 
 const SearchScreen = () => {
 
-    const [searchTerm, setSearchTerm] = useState('');
-    const [results, setResults] = useState([]);
-    const [errorMessage, setErrorMessage] = useState('');
+    const [searchTerm, setSearchTerm] = useState('')
+    const [handleSearch, results, errorMessage] = useResults()
 
-    const handleSearchSubmitted = async () => {
-        
-        const searchParams = {
-            limit: 50,
-            term: searchTerm,
-            location: 'san jose'
-        }
-
-        try
-        {
-
-            const res = await yelp.get('/search', { params: searchParams });
-    
-            console.log({ businesses: res.data.businesses });
-
-        }
-        catch (err) 
-        {
-
-            setErrorMessage('Something went wrong...')
-            console.log(err);
-
-        }
-
-
-    }
+    // call search api when component is first rendered
+    useEffect(() => {handleSearch('burgers', 'nyc', 50)}, [])
     
     return (
 
@@ -50,8 +25,8 @@ const SearchScreen = () => {
 
             <SearchBar 
                 searchTerm={searchTerm} 
-                onSearchTermChange={term => setSearchTerm(term)}
-                onSearchTermSubmit={() => handleSearchSubmitted()} />
+                onSearchTermChange={setSearchTerm}
+                onSearchTermSubmit={() => handleSearch(searchTerm, 'nyc', 200)} />
 
                 <Text>{errorMessage}</Text>
 
@@ -59,8 +34,8 @@ const SearchScreen = () => {
 
         </View>
 
-    );
+    )
 
-};
+}
 
-export default SearchScreen;
+export default SearchScreen
